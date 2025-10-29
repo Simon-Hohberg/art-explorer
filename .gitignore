@@ -1,0 +1,9 @@
+node_modules
+SAPBPI_EIC_ND_UIM.png
+requirements.md
+dist
+generated
+# Prisma SQL dev database
+**/*.db
+# Keep environment variables out of version control
+.env
