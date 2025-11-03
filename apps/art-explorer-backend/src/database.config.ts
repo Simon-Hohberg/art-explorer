@@ -1,6 +1,5 @@
 import { registerAs } from '@nestjs/config';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { Artwork } from './artwork/artwork.entity.js';
 
 export default registerAs(
   'database',

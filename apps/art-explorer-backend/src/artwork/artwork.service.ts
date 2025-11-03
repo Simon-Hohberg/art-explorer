@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Artwork } from './artwork.entity.js';
-import { Repository } from 'typeorm';
+import { FindManyOptions, ILike, Repository } from 'typeorm';
 
 @Injectable()
 export class ArtworkService {
@@ -14,9 +14,9 @@ export class ArtworkService {
   }
 
   getAllArtworks(nameFilter?: string): Promise<Artwork[]> {
-    const options = nameFilter
+    const options: FindManyOptions<Artwork> | undefined = nameFilter
       ? {
-          where: { name: nameFilter },
+          where: { name: ILike(nameFilter) },
         }
       : undefined;
     return this.artworkRepository.find(options);
