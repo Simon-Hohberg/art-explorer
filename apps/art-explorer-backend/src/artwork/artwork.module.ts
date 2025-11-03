@@ -8,5 +8,6 @@ import { ArtworkService } from './artwork.service.js';
   imports: [TypeOrmModule.forFeature([Artwork])],
   providers: [ArtworkService],
   controllers: [ArtworkController],
+  exports: [TypeOrmModule],
 })
 export class ArtworkModule {}

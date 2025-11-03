@@ -8,9 +8,9 @@ export class Artwork {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ nullable: true })
   artist: string;
 
-  @Column()
+  @Column({ nullable: true })
   creation_year: number;
 }
