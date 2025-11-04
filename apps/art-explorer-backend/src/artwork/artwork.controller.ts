@@ -3,6 +3,7 @@ import {
   Get,
   NotFoundException,
   Param,
+  ParseIntPipe,
   Query,
 } from '@nestjs/common';
 import { ArtworkService } from './artwork.service.js';
@@ -17,7 +18,7 @@ export class ArtworkController {
   }
 
   @Get(':id')
-  async getArtworkById(@Param('id') id: number) {
+  async getArtworkById(@Param('id', ParseIntPipe) id: number) {
     const artwork = await this.artworkService.getArtworkById(id);
     if (artwork === null) {
       throw new NotFoundException(undefined, `No artwork with ID ${id}`);
