@@ -1,7 +1,8 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { ArtworkDTO } from 'art-explorer-dtos';
 
 @Entity()
-export class Artwork {
+export class Artwork implements ArtworkDTO {
   @PrimaryGeneratedColumn()
   id: number;
 

@@ -1,0 +1,14 @@
+{
+  "name": "art-explorer-dtos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "",
+  "packageManager": "pnpm@10.18.0"
+}
