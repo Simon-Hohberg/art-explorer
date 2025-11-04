@@ -1,4 +1,10 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  NotFoundException,
+  Param,
+  Query,
+} from '@nestjs/common';
 import { ArtworkService } from './artwork.service.js';
 
 @Controller('artworks')
@@ -11,7 +17,11 @@ export class ArtworkController {
   }
 
   @Get(':id')
-  getArtworkById(@Param('id') id: number) {
-    return this.artworkService.getArtworkById(id);
+  async getArtworkById(@Param('id') id: number) {
+    const artwork = await this.artworkService.getArtworkById(id);
+    if (artwork === null) {
+      throw new NotFoundException(undefined, `No artwork with ID ${id}`);
+    }
+    return artwork;
   }
 }
