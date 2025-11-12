@@ -1,5 +1,12 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 import { ArtworkDTO } from 'art-explorer-dtos';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Media } from './media.entity.js';
 
 @Entity()
 export class Artwork implements ArtworkDTO {
@@ -14,4 +21,8 @@ export class Artwork implements ArtworkDTO {
 
   @Column({ nullable: true })
   creation_year: number;
+
+  @OneToOne(() => Media, { cascade: true, nullable: true })
+  @JoinColumn()
+  preview_media?: Media | undefined;
 }

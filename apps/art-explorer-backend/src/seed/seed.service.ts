@@ -2,21 +2,30 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Artwork } from '../artwork/artwork.entity.js';
+import { Media } from '../artwork/media.entity.js';
 
 @Injectable()
 export class SeedService {
   constructor(
     @InjectRepository(Artwork)
     private readonly artworkRepository: Repository<Artwork>,
+    @InjectRepository(Media)
+    private readonly mediaRepository: Repository<Media>,
   ) {}
 
   async run() {
-    await this.artworkRepository.clear();
+    await this.artworkRepository.deleteAll();
+    await this.mediaRepository.deleteAll();
+    // const mediaEntry = await this.mediaRepository.save({
+    //   file_name: 'homage',
+    //   file_ext: 'png',
+    // });
     await this.artworkRepository.save([
       {
         artist: 'Josef Albers',
         name: 'Homage to the Square: Against Deep Blue',
         creation_year: 1955,
+        preview_media: { file_name: 'homage', file_ext: 'png' },
       },
       {
         artist: 'Albrecht Altdorfer',

@@ -10,7 +10,10 @@ export class ArtworkService {
   ) {}
 
   getArtworkById(id: number): Promise<Artwork | null> {
-    return this.artworkRepository.findOneBy({ id });
+    return this.artworkRepository.findOne({
+      where: { id },
+      relations: { preview_media: true },
+    });
   }
 
   getAllArtworks(nameFilter?: string): Promise<Artwork[]> {

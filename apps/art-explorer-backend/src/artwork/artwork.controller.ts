@@ -14,7 +14,9 @@ export class ArtworkController {
   constructor(private readonly artworkService: ArtworkService) {}
 
   @Get()
-  getAllArtworks(@Query('name') nameFilter?: string): Promise<ArtworkDTO[]> {
+  getAllArtworks(
+    @Query('name') nameFilter?: string,
+  ): Promise<Omit<ArtworkDTO, 'preview_media'>[]> {
     return this.artworkService.getAllArtworks(nameFilter);
   }
 
